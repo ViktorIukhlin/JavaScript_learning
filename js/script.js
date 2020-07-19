@@ -1,5 +1,5 @@
 'use strict';
-let numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+const numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
 
 const personalMovieDB = {
     count: numberOfFilms,
@@ -9,12 +9,24 @@ const personalMovieDB = {
     privat: false
 };
 
-const   a = prompt('Один из последних просмотренных фильмов?', ''),
-        b = prompt('На сколько оцените его?', ''),
-        c = prompt('Один из последних просмотренных фильмов?', ''),
-        d = prompt('На сколько оцените его?', '');
+let question = true;
+let a = []; let b = [];let i = 1;
+while(question == true){
 
-personalMovieDB.movies[a] = b;
-personalMovieDB.movies[c] = d;
+    do{
+        a[i] = prompt('Один из последних просмотренных фильмов?', '');
+    }
+    while((a[i].length == 0)||((a[i].length) > 50));
 
-console.log(personalMovieDB);
+    do{
+    b[i] = prompt('На сколько оцените его?', '');
+    }
+    while((b[i] == 0)||(b[i]> 50));
+    
+    personalMovieDB.movies[a[i]] = b[i];
+
+    question = confirm('Вы хотите проддолжить ввод фильмов?');
+    i++;
+}
+
+(personalMovieDB.count < 10)?alert('Просмотрено довольно мало фильмов'):((personalMovieDB.count > 10)&&(personalMovieDB.count < 30))?alert('Вы классический зритель'):alert('Произошла ошибка');
