@@ -9,7 +9,7 @@ const personalMovieDB = {
     start: function() {
         this.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-        while (this.count == '' || this.count == null || isNaN(this.count)) {
+        while (this.count === '' || this.count == null || isNaN(this.count)) {
             this.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
         }
     },
@@ -42,10 +42,11 @@ const personalMovieDB = {
     },
     writeYourGenres: function() {
         for (let i = 1; i < 4; i++) {
-            while (this.genres[i - 1] == '' || this.genres[i - 1] == null ) {
-                this.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}: `, '');
+            while (this.genres[i - 1] === '' || this.genres[i - 1] == null ) {
+                this.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}: `, '').toLowerCase();
             }
         }
+        this.genres.sort();
         this.genres.forEach((item, i) =>{
             console.log(`Любимый жанр ${i+1} - это ${item}`);
         });
